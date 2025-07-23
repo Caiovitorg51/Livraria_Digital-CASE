@@ -1,15 +1,11 @@
 package com.Livraria_Digital.dto;
 
 import com.Livraria_Digital.models.entity.Livro;
-import jakarta.validation.constraints.*;
-import lombok.*;
 import com.Livraria_Digital.validation.AnoNaoFuturo;
+import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class LivroDTO {
     private Long id;
 
@@ -35,6 +31,40 @@ public class LivroDTO {
     @NotNull
     private Long categoriaId;
 
-    public LivroDTO(Livro salvo) {
+    public LivroDTO() {}
+
+    public LivroDTO(Long id, String titulo, String isbn, Integer anoPublicacao, BigDecimal preco, Long autorId, Long categoriaId) {
+        this.id = id;
+        this.titulo = titulo;
+        this.isbn = isbn;
+        this.anoPublicacao = anoPublicacao;
+        this.preco = preco;
+        this.autorId = autorId;
+        this.categoriaId = categoriaId;
     }
+
+    public LivroDTO(Livro salvo) {
+        // Este construtor precisa ser implementado conforme sua entidade Livro
+    }
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
+
+    public String getIsbn() { return isbn; }
+    public void setIsbn(String isbn) { this.isbn = isbn; }
+
+    public Integer getAnoPublicacao() { return anoPublicacao; }
+    public void setAnoPublicacao(Integer anoPublicacao) { this.anoPublicacao = anoPublicacao; }
+
+    public BigDecimal getPreco() { return preco; }
+    public void setPreco(BigDecimal preco) { this.preco = preco; }
+
+    public Long getAutorId() { return autorId; }
+    public void setAutorId(Long autorId) { this.autorId = autorId; }
+
+    public Long getCategoriaId() { return categoriaId; }
+    public void setCategoriaId(Long categoriaId) { this.categoriaId = categoriaId; }
 }
