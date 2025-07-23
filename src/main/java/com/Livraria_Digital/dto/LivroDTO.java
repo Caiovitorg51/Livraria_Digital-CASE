@@ -1,5 +1,6 @@
 package com.Livraria_Digital.dto;
 
+import com.Livraria_Digital.models.entity.Livro;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import com.Livraria_Digital.validation.AnoNaoFuturo;
@@ -15,7 +16,6 @@ public class LivroDTO {
     @NotBlank
     private String titulo;
 
-    @NotBlank(message = "ISBN é obrigatório")
     @Pattern(
             regexp = "^(\\d{10}|\\d{13})$",
             message = "ISBN deve conter 10 ou 13 dígitos numéricos"
@@ -34,4 +34,7 @@ public class LivroDTO {
 
     @NotNull
     private Long categoriaId;
+
+    public LivroDTO(Livro salvo) {
+    }
 }

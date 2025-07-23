@@ -22,8 +22,8 @@ public class Livro {
     @NotBlank
     private String titulo;
 
-    @Column(nullable = false, unique = true)
-    @Pattern(regexp = "^(\\d{10}|\\d{13})$")
+    @Column(nullable = true, unique = true)
+    @Pattern(regexp = "^$|^(\\d{10}|\\d{13})$")
     private String isbn;
 
     private Integer anoPublicacao;

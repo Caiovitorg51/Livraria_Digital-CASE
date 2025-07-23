@@ -2,6 +2,7 @@ package com.Livraria_Digital.service;
 
 import com.Livraria_Digital.dto.LivroDTO;
 import com.Livraria_Digital.dto.LivroImportacaoDTO;
+import com.Livraria_Digital.exception.LivroDuplicadoException;
 import com.Livraria_Digital.models.entity.Autor;
 import com.Livraria_Digital.models.entity.Categoria;
 import com.Livraria_Digital.models.entity.Livro;
@@ -90,17 +91,53 @@ public class LivroService {
         return livroRepository.findByAnoPublicacao(ano).stream().map(this::toDTO).collect(Collectors.toList());
     }
 
-    public LivroDTO importarLivro(LivroImportacaoDTO importacao) throws IOException {
-        LivroDTO dto = scrapingService.extrairDadosLivro(importacao.getUrl());
+//    public LivroDTO importarLivro(LivroImportacaoDTO importacao) throws IOException {
+//        LivroDTO dto = scrapingService.extrairDadosLivro(importacao.getUrl());
+//
+//        if (livroRepository.existsByIsbn(dto.getIsbn())) {
+//            throw new IllegalArgumentException("Livro já existe pelo ISBN");
+//        }
+//
+//        dto.setAutorId(importacao.getAutorId());
+//        dto.setCategoriaId(importacao.getCategoriaId());
+//
+//        return criar(dto);
+//    }
 
-        if (livroRepository.existsByIsbn(dto.getIsbn())) {
-            throw new IllegalArgumentException("Livro já existe pelo ISBN");
+    public LivroDTO importarLivroDeUrl(LivroImportacaoDTO dto) throws IOException {
+        LivroDTO scraped = scrapingService.extrairDadosLivro(dto.getUrl());
+
+        scraped.setAutorId(dto.getAutorId());
+        scraped.setCategoriaId(dto.getCategoriaId());
+
+        if (livroRepository.existsByTituloIgnoreCase(scraped.getTitulo())) {
+            throw new LivroDuplicadoException("Livro já existente com o título: " + scraped.getTitulo());
         }
 
-        dto.setAutorId(importacao.getAutorId());
-        dto.setCategoriaId(importacao.getCategoriaId());
+        return salvar(scraped);
+    }
 
-        return criar(dto);
+
+    public boolean existePorTitulo(String titulo) {
+        return livroRepository.existsByTituloIgnoreCase(titulo);
+    }
+
+    public LivroDTO salvar(LivroDTO dto) {
+        Livro livro = new Livro();
+        livro.setTitulo(dto.getTitulo());
+        livro.setPreco(dto.getPreco());
+        livro.setAnoPublicacao(dto.getAnoPublicacao());
+        livro.setIsbn(dto.getIsbn());
+
+        livro.setAutor(autorRepository.findById(dto.getAutorId())
+                .orElseThrow(() -> new RuntimeException("Autor não encontrado")));
+
+        livro.setCategoria(categoriaRepository.findById(dto.getCategoriaId())
+                .orElseThrow(() -> new RuntimeException("Categoria não encontrada")));
+
+        Livro salvo = livroRepository.save(livro);
+
+        return new LivroDTO(salvo); // ou converter manualmente, se não tiver construtor
     }
 
 

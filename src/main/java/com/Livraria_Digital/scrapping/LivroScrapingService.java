@@ -21,6 +21,9 @@ public class LivroScrapingService {
         try {
             Document doc = Jsoup.connect(url)
                     .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36")
+                    .header("Accept-Language", "en-US,en;q=0.9")
+                    .header("Accept-Encoding", "gzip, deflate")
+                    .header("Connection", "keep-alive")
                     .timeout(10_000)
                     .get();
 
@@ -57,9 +60,9 @@ public class LivroScrapingService {
 
             // Extrair ISBN
             String isbn = extrairIsbn(doc);
-            if (isbn.isBlank()) {
-                throw new IOException("ISBN não encontrado na página");
-            }
+//            if (isbn.isBlank()) {
+//                throw new IOException("ISBN não encontrado na página");
+//            }
             logger.info("ISBN extraído: " + isbn);
 
             LivroDTO dto = new LivroDTO();
@@ -88,7 +91,15 @@ public class LivroScrapingService {
         Elements elementos = doc.select("#detailBullets_feature_div li:contains(ISBN-13)");
         if (!elementos.isEmpty()) {
             String texto = elementos.first().text(); // Ex: "ISBN-13: 9781234567890"
-            return texto.replaceAll("[^\\d]", "");
+            String isbn = texto.replaceAll("[^\\d]", "");
+
+            // Validação de comprimento
+            if (isbn.length() == 10 || isbn.length() == 13) {
+                return isbn;
+            } else {
+                logger.warning("ISBN extraído com tamanho inválido: " + isbn);
+                return ""; // ou null, dependendo do que você quiser aceitar
+            }
         }
         return "";
     }

@@ -1,9 +1,13 @@
 package com.Livraria_Digital.controller;
 
 import com.Livraria_Digital.dto.*;
+import com.Livraria_Digital.exception.LivroDuplicadoException;
+import com.Livraria_Digital.repository.AutorRepository;
+import com.Livraria_Digital.repository.CategoriaRepository;
 import com.Livraria_Digital.service.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +20,15 @@ import java.util.List;
 public class LivroController {
 
     private final LivroService livroService;
+    private final AutorRepository autorRepository;
+    private final CategoriaRepository categoriaRepository;
 
-    public LivroController(LivroService livroService) {
+    public LivroController(LivroService livroService,
+                           AutorRepository autorRepository,
+                           CategoriaRepository categoriaRepository) {
         this.livroService = livroService;
+        this.autorRepository = autorRepository;
+        this.categoriaRepository = categoriaRepository;
     }
 
     @GetMapping
@@ -67,8 +77,25 @@ public class LivroController {
     }
 
     @PostMapping("/importar")
-    public ResponseEntity<LivroDTO> importarLivro(@RequestBody @Valid LivroImportacaoDTO dto) throws IOException {
-        return ResponseEntity.ok(livroService.importarLivro(dto));
+    public ResponseEntity<?> importarLivro(@RequestBody LivroImportacaoDTO dto) {
+        if (!autorRepository.existsById(dto.getAutorId())) {
+            return ResponseEntity.badRequest().body("Autor não encontrado para o id: " + dto.getAutorId());
+        }
+
+        if (!categoriaRepository.existsById(dto.getCategoriaId())) {
+            return ResponseEntity.badRequest().body("Categoria não encontrada para o id: " + dto.getCategoriaId());
+        }
+        try {
+            LivroDTO livroSalvo = livroService.importarLivroDeUrl(dto);
+            return ResponseEntity.ok(livroSalvo);
+        } catch (LivroDuplicadoException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("Erro ao acessar a URL fornecida.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno ao importar o livro.");
+        }
     }
 }
 
