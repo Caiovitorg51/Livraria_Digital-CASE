@@ -1,8 +1,7 @@
 services:
-  livraria:
+  livraria-app:
     build: .
-    container_name: livraria-app
     ports:
       - "8080:8080"
     volumes:
-      - ./data/h2:/root
+      - ./data:/data
