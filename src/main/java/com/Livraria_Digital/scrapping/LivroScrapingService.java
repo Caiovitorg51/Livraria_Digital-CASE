@@ -3,6 +3,7 @@ package com.Livraria_Digital.scrapping;
 import com.Livraria_Digital.dto.LivroDTO;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
@@ -58,9 +59,13 @@ public class LivroScrapingService {
                 logger.info("Ano de publicação extraído: " + anoPublicacao);
             }
 
-            // Extrair ISBN
-            String isbn = extrairIsbn(doc);
-            logger.info("ISBN extraído: " + isbn);
+            // Extrair ISBN a partir da URL
+            String isbn = extrairIsbn(url);
+            if (isbn == null || isbn.isBlank()) {
+                logger.warning("Nenhum ISBN válido encontrado na URL.");
+            } else {
+                logger.info("ISBN extraído: " + isbn);
+            }
 
             LivroDTO dto = new LivroDTO();
             dto.setTitulo(titulo);
@@ -84,20 +89,17 @@ public class LivroScrapingService {
         return 0;
     }
 
-    private String extrairIsbn(Document doc) {
-        Elements elementos = doc.select("#detailBullets_feature_div li:contains(ISBN)");
-        if (!elementos.isEmpty()) {
-            String texto = elementos.first().text(); // Ex:9781234567890"
-            String isbn = texto.replaceAll("[^\\d]", "");
-
-            // Validação de comprimento
-            if (isbn.length() == 10 || isbn.length() == 13) {
-                return isbn;
-            } else {
-                logger.warning("ISBN extraído com tamanho inválido: " + isbn);
-                return ""; // ou null, dependendo do que você quiser aceitar
+    public String extrairIsbn(String url) {
+        try {
+            if (url.contains("/dp/")) {
+                String asin = url.substring(url.indexOf("/dp/") + 4);
+                int slash = asin.indexOf("/");
+                if (slash != -1) asin = asin.substring(0, slash);
+                return asin;
             }
+        } catch (Exception e) {
+            // log de erro
         }
-        return "";
+        return null;
     }
 }

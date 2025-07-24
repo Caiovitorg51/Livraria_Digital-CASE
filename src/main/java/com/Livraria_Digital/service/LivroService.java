@@ -91,29 +91,15 @@ public class LivroService {
         return livroRepository.findByAnoPublicacao(ano).stream().map(this::toDTO).collect(Collectors.toList());
     }
 
-//    public LivroDTO importarLivro(LivroImportacaoDTO importacao) throws IOException {
-//        LivroDTO dto = scrapingService.extrairDadosLivro(importacao.getUrl());
-//
-//        if (livroRepository.existsByIsbn(dto.getIsbn())) {
-//            throw new IllegalArgumentException("Livro já existe pelo ISBN");
-//        }
-//
-//        dto.setAutorId(importacao.getAutorId());
-//        dto.setCategoriaId(importacao.getCategoriaId());
-//
-//        return criar(dto);
-//    }
-
     public LivroDTO importarLivroDeUrl(LivroImportacaoDTO dto) throws IOException {
         LivroDTO scraped = scrapingService.extrairDadosLivro(dto.getUrl());
 
         scraped.setAutorId(dto.getAutorId());
         scraped.setCategoriaId(dto.getCategoriaId());
 
-        scraped.setIsbn(null);
-
-        if (livroRepository.existsByTituloIgnoreCase(scraped.getTitulo())) {
-            throw new LivroDuplicadoException("Livro já existente com o título: " + scraped.getTitulo());
+//        scraped.setIsbn(null);
+        if (scraped.getIsbn() != null && livroRepository.existsByIsbn(scraped.getIsbn())) {
+            throw new LivroDuplicadoException("ISBN já cadastrado: " + scraped.getIsbn());
         }
 
         return salvar(scraped);
