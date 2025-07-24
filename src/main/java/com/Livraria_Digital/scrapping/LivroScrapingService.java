@@ -44,7 +44,7 @@ public class LivroScrapingService {
 
             BigDecimal preco;
             try {
-                preco = new BigDecimal(precoStr).movePointLeft(2); // Ajusta centavos
+                preco = new BigDecimal(precoStr); // Ajusta centavos
             } catch (NumberFormatException e) {
                 throw new IOException("Formato de preço inválido: " + precoStr);
             }
@@ -60,9 +60,6 @@ public class LivroScrapingService {
 
             // Extrair ISBN
             String isbn = extrairIsbn(doc);
-//            if (isbn.isBlank()) {
-//                throw new IOException("ISBN não encontrado na página");
-//            }
             logger.info("ISBN extraído: " + isbn);
 
             LivroDTO dto = new LivroDTO();
@@ -88,9 +85,9 @@ public class LivroScrapingService {
     }
 
     private String extrairIsbn(Document doc) {
-        Elements elementos = doc.select("#detailBullets_feature_div li:contains(ISBN-13)");
+        Elements elementos = doc.select("#detailBullets_feature_div li:contains(ISBN)");
         if (!elementos.isEmpty()) {
-            String texto = elementos.first().text(); // Ex: "ISBN-13: 9781234567890"
+            String texto = elementos.first().text(); // Ex:9781234567890"
             String isbn = texto.replaceAll("[^\\d]", "");
 
             // Validação de comprimento

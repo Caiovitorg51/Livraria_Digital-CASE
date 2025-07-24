@@ -110,6 +110,8 @@ public class LivroService {
         scraped.setAutorId(dto.getAutorId());
         scraped.setCategoriaId(dto.getCategoriaId());
 
+        scraped.setIsbn(null);
+
         if (livroRepository.existsByTituloIgnoreCase(scraped.getTitulo())) {
             throw new LivroDuplicadoException("Livro já existente com o título: " + scraped.getTitulo());
         }
