@@ -69,7 +69,17 @@ Atualmente, a API realiza scraping a partir do seguinte domínio:
 
 * [Amazon](https://www.amazon.com.br)
 
-Apenas as informações de **título**, **preço** e **ano de publicação** são extraídas automaticamente.
+* Exemplos de URLs utilizadas nos testes:
+
+https://www.amazon.com.br/segredo-empregada-Livro/dp/6555655941
+
+https://www.amazon.com.br/detento-Freida-McFadden/dp/6555657332
+
+https://www.amazon.com.br/sete-chaves-Freida-McFadden/dp/6555658053
+
+https://www.amazon.com.br/Nunca-minta-Freida-McFadden/dp/8501923281
+
+Apenas as informações de **título**, **preço** e **ano de publicação** são extraídas automaticamente, e o **ISBN** é retirado da URL.
 
 ---
 
