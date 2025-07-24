@@ -1,0 +1,659 @@
+type: collection.insomnia.rest/5.0
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1751687830892
+  modified: 1751687830892
+  description: ""
+collection:
+  - name: Livraria
+    meta:
+      id: fld_3ac908a00a704973af4e6ecf96aba0a4
+      created: 1753217404303
+      modified: 1753217404303
+      sortKey: -1753217404303
+      description: ""
+    children:
+      - name: Livros
+        meta:
+          id: fld_952ae3187ca44db69769c36cab79f6ea
+          created: 1753217421220
+          modified: 1753225105450
+          sortKey: -1753217421220
+          description: ""
+        children:
+          - url: http://localhost:8080/api/livros
+            name: Criar Livro
+            meta:
+              id: req_f7d533d7bff04817ab1327716d23d0bf
+              created: 1753217442196
+              modified: 1753367350040
+              isPrivate: false
+              description: ""
+              sortKey: -1753217442196
+            method: POST
+            body:
+              mimeType: application/json
+              text: |
+                {
+                  "titulo": "Livro do Futuro",
+                  "isbn": "1234567890",
+                  "anoPublicacao": 2020,
+                  "preco": 59.90,
+                  "autorId": 1,
+                  "categoriaId": 1
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/livros?ano=2020
+            name: livro por ano
+            meta:
+              id: req_4d50b34309b04e1dace499b284c5ef9b
+              created: 1753218734281
+              modified: 1753317167432
+              isPrivate: false
+              description: ""
+              sortKey: -1753218734281
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/livros/importar
+            name: Importar livros
+            meta:
+              id: req_6806fa272f70461abf47f98d9dea0987
+              created: 1753225106418
+              modified: 1753317179858
+              isPrivate: false
+              description: ""
+              sortKey: -1753225106418
+            method: POST
+            body:
+              mimeType: application/json
+              text: >-
+                {
+                  "url": "https://www.amazon.com.br/Nunca-minta-Freida-McFadden/dp/8501923281",
+                  "autorId": 1,
+                  "categoriaId": 1
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/livros/importar
+            name: Importar livros 2
+            meta:
+              id: req_1620004a866746f69c5fe672c3e90177
+              created: 1753317847207
+              modified: 1753326113958
+              isPrivate: false
+              description: ""
+              sortKey: -1753221920349.5
+            method: POST
+            body:
+              mimeType: application/json
+              text: >-
+                {
+                  "url": "https://www.amazon.com.br/sete-chaves-Freida-McFadden/dp/6555658053",
+                  "autorId": 1,
+                  "categoriaId": 1
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/livros/importar
+            name: Importar livros 3
+            meta:
+              id: req_516c90e7460545969425616e36203101
+              created: 1753326182673
+              modified: 1753361769483
+              isPrivate: false
+              description: ""
+              sortKey: -1753220327315.25
+            method: POST
+            body:
+              mimeType: application/json
+              text: >-
+                {
+                  "url": "https://www.amazon.com.br/detento-Freida-McFadden/dp/6555657332",
+                  "autorId": 1,
+                  "categoriaId": 1
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/livros
+            name: get livros
+            meta:
+              id: req_485c2ae7f2724351ab4b369d12821ce7
+              created: 1753365590851
+              modified: 1753367339972
+              isPrivate: false
+              description: ""
+              sortKey: -1753218285289.5
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/livros/search?titulo=O detento
+            name: search livro
+            meta:
+              id: req_160e41c56045452bb4ba33420ff584eb
+              created: 1753365689581
+              modified: 1753367348729
+              isPrivate: false
+              description: ""
+              sortKey: -1753218060793.75
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/livros/1
+            name: editar livro
+            meta:
+              id: req_c4373c1495e849ddb804dd8e758cf22b
+              created: 1753365913012
+              modified: 1753367291264
+              isPrivate: false
+              description: ""
+              sortKey: -1753365913012
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "titulo": "Livro do Futuro",
+                  "isbn": "1234567890",
+                  "anoPublicacao": 2020,
+                  "preco": 100.90,
+                  "autorId": 1,
+                  "categoriaId": 1
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/livros?autor=1
+            name: livro por autor
+            meta:
+              id: req_4548a9586093481c8710469def689e3b
+              created: 1753367147550
+              modified: 1753367160320
+              isPrivate: false
+              description: ""
+              sortKey: -1753218509785.25
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/livros?autor=1
+            name: livro por categoria
+            meta:
+              id: req_bcaa18b4fafe49f4b74dedabd3fd9710
+              created: 1753367173597
+              modified: 1753367173597
+              isPrivate: false
+              description: ""
+              sortKey: -1753218397537.375
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/livros/8153
+            name: deletar livro
+            meta:
+              id: req_da1d00539250454bb33602ce7584dd05
+              created: 1753367255408
+              modified: 1753367312763
+              isPrivate: false
+              description: ""
+              sortKey: -1753367255408
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Autor
+        meta:
+          id: fld_8ea120460b864793830069285cc66eef
+          created: 1753217429353
+          modified: 1753217429353
+          sortKey: -1753217429353
+          description: ""
+        children:
+          - url: http://localhost:8080/api/autores
+            name: criar autor
+            meta:
+              id: req_ffaac4dcc0784142bddc177a63113fac
+              created: 1753217772633
+              modified: 1753217934555
+              isPrivate: false
+              description: ""
+              sortKey: -1753217776167
+            method: POST
+            body:
+              mimeType: application/json
+              text: |
+                {
+                  "nome": "José Saramago",
+                  "email": "jose.saramago@example.com",
+                  "dataNascimento": "1922-11-16"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/autores
+            name: criar autor 2
+            meta:
+              id: req_2f0dc28256ee4bc599295d3cbf6cda70
+              created: 1753365797083
+              modified: 1753366317783
+              isPrivate: false
+              description: ""
+              sortKey: -1753217609181.5
+            method: POST
+            body:
+              mimeType: application/json
+              text: |
+                {
+                  "nome": "autor2",
+                  "email": "jose.saramago@example.com",
+                  "dataNascimento": "1922-11-16"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/autores
+            name: criar autor 3
+            meta:
+              id: req_35e9b711ae024ea588596402832fb947
+              created: 1753365807678
+              modified: 1753366324149
+              isPrivate: false
+              description: ""
+              sortKey: -1753217692674.25
+            method: POST
+            body:
+              mimeType: application/json
+              text: |
+                {
+                  "nome": "José autor3",
+                  "email": "jose.saramago@example.com",
+                  "dataNascimento": "1922-11-16"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/autores
+            name: get autores
+            meta:
+              id: req_a89a2a9b9d324f668515403f94764fee
+              created: 1753366271409
+              modified: 1753366281884
+              isPrivate: false
+              description: ""
+              sortKey: -1753217609081.5
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/autores/1/livros
+            name: get livros do autor
+            meta:
+              id: req_c9587b43643346079d1343c839ddea1e
+              created: 1753366385045
+              modified: 1753366502255
+              isPrivate: false
+              description: ""
+              sortKey: -1753217525638.75
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/autores/1552
+            name: deletar autor
+            meta:
+              id: req_8f49c31efec742d2914cd75078959eec
+              created: 1753366606646
+              modified: 1753366621052
+              isPrivate: false
+              description: ""
+              sortKey: -1753217734420.625
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/autores/1553
+            name: get autor by id
+            meta:
+              id: req_f973c494f03149328b255b9b40605ce4
+              created: 1753366667458
+              modified: 1753366678589
+              isPrivate: false
+              description: ""
+              sortKey: -1753217567360.125
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Categoria
+        meta:
+          id: fld_408e614990594ef5b72db3efc5dc46e2
+          created: 1753217437964
+          modified: 1753217826429
+          sortKey: -1753217438164
+          description: ""
+        children:
+          - url: http://localhost:8080/api/categorias
+            name: criar categoria
+            meta:
+              id: req_b2fbdff015a04646bce506e0fc300e42
+              created: 1753217796980
+              modified: 1753317120237
+              isPrivate: false
+              description: ""
+              sortKey: -1753217836298
+            method: POST
+            body:
+              mimeType: application/json
+              text: |+
+                {
+                  "nome": "Ação"
+                }
+
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/categorias
+            name: criar categoria 2
+            meta:
+              id: req_63f01a8dc5f941c28390864fa6745996
+              created: 1753365784968
+              modified: 1753365817383
+              isPrivate: false
+              description: ""
+              sortKey: -1753217806232.5
+            method: POST
+            body:
+              mimeType: application/json
+              text: |+
+                {
+                  "nome": "romance"
+                }
+
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/categorias
+            name: criar categoria 3
+            meta:
+              id: req_38fa1fd67a594e3a9b99d6a33a597acd
+              created: 1753365791531
+              modified: 1753365829001
+              isPrivate: false
+              description: ""
+              sortKey: -1753217821265.25
+            method: POST
+            body:
+              mimeType: application/json
+              text: |+
+                {
+                  "nome": "fantasia"
+                }
+
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/categorias
+            name: get categorias
+            meta:
+              id: req_192548f18da046df8194be14d3e9ffb7
+              created: 1753366748275
+              modified: 1753366761037
+              isPrivate: false
+              description: ""
+              sortKey: -1753217828781.625
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/categorias/1
+            name: get categoria by id
+            meta:
+              id: req_fd30bfd805e248be961d06ca9e6ca9d3
+              created: 1753366774136
+              modified: 1753366808147
+              isPrivate: false
+              description: ""
+              sortKey: -1753217825023.4375
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1751688215795
+    modified: 1753217469310
+  cookies:
+    - key: JSESSIONID
+      value: AC464E0F073DB902200AF8C34B595ADD
+      domain: localhost
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-07-06T13:54:12.287Z
+      lastAccessed: 2025-07-22T20:51:09.310Z
+      id: abc74483-9c9c-4e46-b934-26b3ec0e08a1
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1751688215792
+    modified: 1751688215792
+    isPrivate: false

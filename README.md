@@ -83,3 +83,13 @@ Apenas as informações de **título**, **preço** e **ano de publicação** sã
 * Docker & Docker Compose
 * Jsoup (para scraping)
 * Swagger/OpenAPI 3
+
+## Testes com Insomnia
+
+O arquivo `InsomniaCollection/livraria-collection-insomnia.json` contém as requisições de teste para os endpoints da API.
+
+### Como importar no Insomnia:
+1. Abra o Insomnia
+2. Vá em `Create → Import`
+3. Selecione `From File`
+4. Escolha o arquivo `livraria-collection-insomnia.json`

@@ -37,7 +37,7 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.criar(dto));
     }
 
-    @GetMapping("/categorias/{categoriaId}/livros")
+    @GetMapping("/{categoriaId}/livros")
     public List<LivroDTO> listarLivrosPorCategoria(@PathVariable Long categoriaId) {
         return livroService.buscarPorCategoria(categoriaId);
     }

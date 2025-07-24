@@ -47,7 +47,7 @@ public class AutorController {
         autorService.deletar(id);
     }
 
-    @GetMapping("/autores/{autorId}/livros")
+    @GetMapping("/{autorId}/livros")
     public List<LivroDTO> listarLivrosPorAutor(@PathVariable Long autorId) {
         return livroService.buscarPorAutor(autorId);
     }
