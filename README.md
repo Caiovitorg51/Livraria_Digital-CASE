@@ -93,3 +93,5 @@ O arquivo `InsomniaCollection/livraria-collection-insomnia.json` contém as requ
 2. Vá em `Create → Import`
 3. Selecione `From File`
 4. Escolha o arquivo `livraria-collection-insomnia.json`
+
+Este README foi melhorado e estilizado usando IA.
