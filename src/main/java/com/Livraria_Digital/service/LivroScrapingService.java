@@ -1,9 +1,8 @@
-package com.Livraria_Digital.scrapping;
+package com.Livraria_Digital.service;
 
 import com.Livraria_Digital.dto.LivroDTO;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
